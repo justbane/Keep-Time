@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftDate
 
 struct TimeHistoryView: View {
     
@@ -31,47 +30,45 @@ struct TimeHistoryView: View {
     
     @ViewBuilder
     var listView: some View {
-        if dataUtils.daysInReport.isEmpty {
-            VStack {
+        VStack {
+            Button(action: {
+                sortShowing = true
+            }, label: {
+                Image(systemName: "calendar")
+                Text("Filter")
+            })
+                .buttonStyle(.borderless)
+                .padding(.top, 10)
+                .popover(isPresented: $sortShowing) {
+                    HistorySortView(
+                        timeUtils: timeUtils,
+                        dataUtils: dataUtils,
+                        startDate: dataUtils.dayRanges.from,
+                        endDate: dataUtils.dayRanges.to)
+                }
+            Text("\(formatter.formatDateString(date: dataUtils.dayRanges.from)) - \(formatter.formatDateString(date: dataUtils.dayRanges.to))")
+                .padding(.bottom, 10)
+                .font(.callout)
+            
+            Divider()
+            
+            if dataUtils.daysInReport.isEmpty {
                 Spacer()
                 Text("Nothing here...").font(.title)
                 Text("Get to work!!").font(.headline)
                 Spacer()
-            }
-        } else {
-            VStack {
-                Button(action: {
-                    sortShowing = true
-                }, label: {
-                    Image(systemName: "calendar")
-                    Text("Filter")
-                })
-                    .buttonStyle(.borderless)
-                    .padding(.top, 10)
-                    .popover(isPresented: $sortShowing) {
-                        HistorySortView(
-                            timeUtils: timeUtils,
-                            dataUtils: dataUtils,
-                            startDate: dataUtils.dayRanges.from,
-                            endDate: dataUtils.dayRanges.to)
-                    }
-                Text("\(formatter.formatDateString(date: dataUtils.dayRanges.from)) - \(formatter.formatDateString(date: dataUtils.dayRanges.to))")
-                    .padding(.bottom, 10)
-                    .font(.callout)
-                
-                Divider()
-                
+            } else {
                 List {
                     ForEach(dataUtils.daysInReport, id: \.self) { day in
                         HStack {
                             VStack(alignment: .leading, spacing: 5) {
                                 NavigationLink(destination: {
-                                    TimeHistoryListView(dataUtils: dataUtils, timeUtils: timeUtils, day: day)
+                                    TimeHistoryListView(dataUtils: dataUtils, timeUtils: timeUtils, day: day.today)
                                         .onAppear {
                                             dataUtils.getLogsForDate(day: day)
                                         }
                                 }) {
-                                    Text(formatter.formatDateString(date: day))
+                                    Text(formatter.formatDateString(date: day.today))
                                         .padding(5)
                                 }
                                 Divider()
@@ -82,6 +79,7 @@ struct TimeHistoryView: View {
                 }
             }
         }
+        
     }
 }
 

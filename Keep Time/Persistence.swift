@@ -18,6 +18,11 @@ struct PersistenceController {
             newItem.seconds = 3600
             newItem.note = "Thisn is log \(i)"
             newItem.timestamp = Date()
+            if i.isMultiple(of: 2) {
+                newItem.billable = true
+            } else {
+                newItem.billable = false
+            }
         }
         do {
             try viewContext.save()

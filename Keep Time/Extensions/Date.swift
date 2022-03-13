@@ -6,20 +6,59 @@
 //
 
 import Foundation
-import SwiftDate
 
 extension Date {
     
-    static var yesterday: Date { return Date().dateAt(.yesterday) }
-    static var tomorrow:  Date { return Date().dateAt(.tomorrow) }
-    static var startOfToday:  Date { return Date().dateAt(.startOfDay) }
-    static var currentMonth:  Date { return Date().dateAt(.startOfMonth) }
-    static var lastMonth:  Date { return (Date() - 1.months) }
+    var dayBefore: Date {
+        return getLocalCalendar().date(byAdding: .day, value: -1, to: noon)!
+    }
+    var dayAfter: Date {
+        return getLocalCalendar().date(byAdding: .day, value: 1, to: noon)!
+    }
+    var today: Date {
+        return getLocalCalendar().date(bySettingHour: 0, minute: 0, second: 0, of: self)!
+    }
+    var endOfToday: Date {
+        return getLocalCalendar().date(bySettingHour: 23, minute: 59, second: 59, of: self)!
+    }
+    var noon: Date {
+        return getLocalCalendar().date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+    var now: Date {
+        let now = getLocalCalendar().dateComponents(in: .current, from: self)
+        let nowDate = DateComponents(year: now.year, month: now.month, day: now.day, hour: now.hour, minute: now.minute, second: now.second)
+        return getLocalCalendar().date(from: nowDate)!
+    }
+    var month: Int {
+        return getLocalCalendar().component(.month,  from: self)
+    }
+    var lastmonth: Date {
+        return getLocalCalendar().date(byAdding: .month, value: -1, to: self)!
+    }
+    var isLastDayOfMonth: Bool {
+        return dayAfter.month != month
+    }
     
-
-//    Methods
+    
+    func getLocalCalendar() -> Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        if let timezone = TimeZone(identifier: TimeZone.current.abbreviation()!) {
+            calendar.timeZone = timezone
+        }
+        return calendar
+        
+    }
+    
+    func isToday(day: Date) -> Bool {
+        let diff = isSameDay(firstDay: today, secondDay: day)
+        if diff {
+            return true
+        }
+        return false
+    }
+    
     func isSameDay(firstDay: Date, secondDay: Date) -> Bool {
-        let diff = Calendar.current.dateComponents([.day], from: firstDay, to: secondDay)
+        let diff = getLocalCalendar().dateComponents([.day], from: firstDay, to: secondDay)
         if diff.day == 0 {
             return true
         }
@@ -27,7 +66,7 @@ extension Date {
     }
     
     func isSameMonth(firstDay: Date, secondDay: Date) -> Bool {
-        let diff = Calendar.current.dateComponents([.month], from: firstDay, to: secondDay)
+        let diff = getLocalCalendar().dateComponents([.month], from: firstDay, to: secondDay)
         if diff.day == 0 {
             return true
         }

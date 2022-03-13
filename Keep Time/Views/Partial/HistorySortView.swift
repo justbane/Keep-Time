@@ -36,7 +36,6 @@ struct HistorySortView: View {
                         .datePickerStyle(.graphical)
                         .padding(.horizontal)
                 }
-                
 
             }
             Divider()

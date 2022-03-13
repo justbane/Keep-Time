@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
-import SwiftDate
 
 struct TimeTodayView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         entity: Log.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Log.timestamp, ascending: false)],
-        predicate: NSPredicate(format: "timestamp >= %@", Date.startOfToday as CVarArg),
+        predicate: NSPredicate(format: "timestamp >= %@", Date().today as CVarArg),
         animation: .default)
     private var logs: FetchedResults<Log>
     
@@ -21,9 +20,11 @@ struct TimeTodayView: View {
     @StateObject var timeUtils = TimeHelper()
     @StateObject var dataUtils = DataManager()
     
+    @State var utilization = 0
+    
     var body: some View {
         VStack {
-            TimeEntryView(timeUtils: timeUtils, dataUtils: dataUtils, day: Date())
+            TimeEntryView(timeUtils: timeUtils, dataUtils: dataUtils, day: Date().now)
             listView
             Spacer()
         }
@@ -39,21 +40,35 @@ struct TimeTodayView: View {
                 Spacer()
             }
         } else {
+            
+            // Progress view for utilization
+            UtilizationView(dataUtils: dataUtils)
+                .padding()
+            
             List {
                 ForEach(logs) { log in
                     HStack {
                         VStack(alignment: .leading, spacing: 5) {
                             Text("\(timeUtils.getTime(seconds: Int(log.seconds)))").font(.title)
                             HStack {
-                                Text(formatter.formatTimeString(date: log.timestamp ?? Date()))
+                                if log.billable {
+                                    Text(Image(systemName: "dollarsign.circle"))
+                                        .foregroundColor(.green)
+                                        .font(.title)
+                                } else {
+                                    Text(Image(systemName: "brain.head.profile"))
+                                        .foregroundColor(.gray)
+                                        .font(.title)
+                                }
+                                Text(formatter.formatTimeString(date: log.timestamp ?? Date().now))
                                 Spacer()
                                 Text(log.note ?? "")
                                     .font(.subheadline).textCase(.uppercase)
                             }.padding(.bottom)
-                            Divider()
                         }
                     }
                     .padding(5)
+                    .cornerRadius(10)
                    
                 }.onDelete(perform: deleteItems)
             }
@@ -64,7 +79,6 @@ struct TimeTodayView: View {
         withAnimation {
             viewContext.perform {
                 offsets.map { logs[$0] }.forEach(viewContext.delete)
-
                 do {
                     try viewContext.save()
                     dataUtils.getTodaysTotal()

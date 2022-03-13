@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "SwiftDate",
-        "repositoryURL": "https://github.com/malcommac/SwiftDate.git",
+        "package": "SwiftUICharts",
+        "repositoryURL": "https://github.com/apppear/chartview.git",
         "state": {
           "branch": null,
-          "revision": "6190d0cefff3013e77ed567e6b074f324e5c5bf5",
-          "version": "6.3.1"
+          "revision": "9115a992c91fa19cbb4f2241084240d38654a1fc",
+          "version": "1.5.5"
         }
       }
     ]

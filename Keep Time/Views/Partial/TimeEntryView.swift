@@ -14,21 +14,12 @@ struct TimeEntryView: View {
     @State var isShowing: Bool = false
     @State var selectedTime: Int = 0
     @State var note: String = ""
+    @State var selectedType: Int = 1
     
     let day: Date
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Text("Add Time: ")
-                Text(timeUtils.getTime(seconds: selectedTime))
-                Spacer()
-                Text(dataUtils.todaysTotal)
-            }
-            .onAppear(perform: {
-                dataUtils.setTheDay(day: day)
-            })
-            .font(.title3)
             
             HStack {
                 Button {
@@ -37,28 +28,48 @@ struct TimeEntryView: View {
                     }
                 } label: {
                     Image(systemName: "minus.square")
+                        .resizable()
+                        .frame(width: 20, height: 20)
                 }.buttonStyle(.borderless)
                 
                 Button {
                     selectedTime += 900
                 } label: {
                     Image(systemName: "plus.square")
+                        .resizable()
+                        .frame(width: 20, height: 20)
                 }.buttonStyle(.borderless)
-
+                
+                Text(timeUtils.getTime(seconds: selectedTime))
+                Spacer()
+                Text(dataUtils.todaysTotal)
+            }.onAppear(perform: {
+                dataUtils.setTheDay(day: day)
+            }).font(.title3)
+                .padding(.bottom, 5)
+            
+            HStack {
                 TextField("Note", text: $note)
-                    .textFieldStyle(.roundedBorder)
+                
+                Spacer()
+                
+                Picker("", selection: $selectedType) {
+                    Image(systemName: "dollarsign.circle").tag(1)
+                    Image(systemName: "brain.head.profile").tag(2)
+                }.pickerStyle(.segmented)
+                    .frame(width: 100)
                 
                 Button {
                     addTime()
                 } label: {
-                    Text("Bank It").font(.body)
+                    Text("Add Time").font(.body)
                 }
             }
+            
         }
         .font(.title2)
         .padding()
-        .background(Color(.sRGB,white: 0.11,opacity: 10000))
-            
+        
     }
     
     private func addTime() {
@@ -67,8 +78,9 @@ struct TimeEntryView: View {
                 let newItem = Log(context: viewContext)
                 newItem.seconds = Int32(selectedTime)
                 newItem.note = note
+                newItem.billable = (selectedType == TimeTypes.Billable.rawValue) ? true : false
+                newItem.timestamp = day
                 
-                newItem.timestamp = day.dateByAdding(2, .hour).date
                 do {
                     try viewContext.save()
                     dataUtils.getTodaysTotal()

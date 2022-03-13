@@ -16,10 +16,21 @@ struct TimeHistoryListView: View {
     
     var body: some View {
         VStack {
-            TimeEntryView(timeUtils: timeUtils, dataUtils: dataUtils, day: day)
+//            MARK: Time entry and utilization views
+            TimeEntryView(timeUtils: timeUtils, dataUtils: dataUtils, day: day.today)
+            UtilizationView(dataUtils: dataUtils)
+                .padding()
+            
             List {
                 ForEach(dataUtils.logsInReport ?? [], id: \.self) { log in
                     HStack {
+                        if log.billable {
+                            Text(Image(systemName: "dollarsign.circle"))
+                                .foregroundColor(.green)
+                        } else {
+                            Text(Image(systemName: "brain.head.profile"))
+                                .foregroundColor(.gray)
+                        }
                         Text("\(timeUtils.getTime(seconds: Int(log.seconds)))")
                             .font(.title3)
                             .frame(width: 200, alignment: .leading)
@@ -39,6 +50,7 @@ struct TimeHistoryListView: View {
             if let log = dataUtils.logsInReport?[index] {
                 dataUtils.context.delete(log)
                 dataUtils.logsInReport?.remove(at: index)
+                dataUtils.getTodaysTotal()
             }
         }
         do {
