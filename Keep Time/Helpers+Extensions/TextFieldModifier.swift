@@ -16,11 +16,12 @@ struct TextFieldModifier: ViewModifier {
         content
             .padding(padding)
             .overlay(RoundedRectangle(cornerRadius: padding)
-                        .stroke(color, lineWidth: lineWidth)
-            )
+            .stroke(color, lineWidth: lineWidth)
+        )
     }
 }
 
+// None of this wors well in MacOS - need to learn more on styling the textField
 extension View {
     func customTextField(color: Color = .secondary, padding: CGFloat = 0, lineWidth: CGFloat = 0.0) -> some View { // <- Default settings
         self.modifier(TextFieldModifier(color: color, padding: padding, lineWidth: lineWidth))

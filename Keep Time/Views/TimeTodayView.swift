@@ -41,36 +41,37 @@ struct TimeTodayView: View {
             }
         } else {
             
-            // Progress view for utilization
-            UtilizationView(dataUtils: dataUtils)
-                .padding()
+            VStack {
+                // Progress view for utilization and total
+                UtilizationTotalView(dataUtils: dataUtils)
             
-            List {
-                ForEach(logs) { log in
-                    HStack {
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text("\(timeUtils.getTime(seconds: Int(log.seconds)))").font(.title)
-                            HStack {
-                                if log.billable {
-                                    Text(Image(systemName: "dollarsign.circle"))
-                                        .foregroundColor(.green)
-                                        .font(.title)
-                                } else {
-                                    Text(Image(systemName: "brain.head.profile"))
-                                        .foregroundColor(.gray)
-                                        .font(.title)
-                                }
-                                Text(formatter.formatTimeString(date: log.timestamp ?? Date().now))
-                                Spacer()
-                                Text(log.note ?? "")
-                                    .font(.subheadline).textCase(.uppercase)
-                            }.padding(.bottom)
+                List {
+                    ForEach(logs) { log in
+                        HStack {
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text("\(timeUtils.getTime(seconds: Int(log.seconds)))").font(.title)
+                                HStack {
+                                    if log.billable {
+                                        Text(Image(systemName: "dollarsign.circle"))
+                                            .foregroundColor(.green)
+                                            .font(.title)
+                                    } else {
+                                        Text(Image(systemName: "brain.head.profile"))
+                                            .foregroundColor(.gray)
+                                            .font(.title)
+                                    }
+                                    Text(formatter.formatTimeString(date: log.timestamp ?? Date().now))
+                                    Spacer()
+                                    Text(log.note ?? "")
+                                        .font(.subheadline).textCase(.uppercase)
+                                }.padding(.bottom)
+                            }
                         }
-                    }
-                    .padding(5)
-                    .cornerRadius(10)
-                   
-                }.onDelete(perform: deleteItems)
+                        .padding(5)
+                        .cornerRadius(10)
+                       
+                    }.onDelete(perform: deleteItems)
+                }
             }
         }
     }

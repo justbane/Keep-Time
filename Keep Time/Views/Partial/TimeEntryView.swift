@@ -15,6 +15,7 @@ struct TimeEntryView: View {
     @State var selectedTime: Int = 0
     @State var note: String = ""
     @State var selectedType: Int = 1
+    @State var showingTags: Bool = false
     
     let day: Date
     
@@ -27,7 +28,7 @@ struct TimeEntryView: View {
                         selectedTime -= 900
                     }
                 } label: {
-                    Image(systemName: "minus.square")
+                    Image(systemName: "minus.circle")
                         .resizable()
                         .frame(width: 20, height: 20)
                 }.buttonStyle(.borderless)
@@ -35,35 +36,46 @@ struct TimeEntryView: View {
                 Button {
                     selectedTime += 900
                 } label: {
-                    Image(systemName: "plus.square")
+                    Image(systemName: "plus.circle")
                         .resizable()
                         .frame(width: 20, height: 20)
                 }.buttonStyle(.borderless)
                 
-                Text(timeUtils.getTime(seconds: selectedTime))
                 Spacer()
-                Text(dataUtils.todaysTotal)
-            }.onAppear(perform: {
-                dataUtils.setTheDay(day: day)
-            }).font(.title3)
-                .padding(.bottom, 5)
-            
-            HStack {
-                TextField("Note", text: $note)
+                TextField("Note: ", text: $note)
                 
                 Spacer()
+                
+//                TODO: implement tags functionality
+//                Button {
+//                    showingTags = !showingTags
+//                } label: {
+//                    Text("Tags")
+//                }.popover(isPresented: $showingTags) {
+//                    Text("Tags partial here")
+//                }
                 
                 Picker("", selection: $selectedType) {
                     Image(systemName: "dollarsign.circle").tag(1)
                     Image(systemName: "brain.head.profile").tag(2)
-                }.pickerStyle(.segmented)
+                }
+                    .pickerStyle(.segmented)
                     .frame(width: 100)
+                    .help("Billable or Overhead")
                 
                 Button {
                     addTime()
                 } label: {
                     Text("Add Time").font(.body)
                 }
+            }.onAppear(perform: {
+                dataUtils.setTheDay(day: day)
+            }).font(.title3)
+                .padding(.bottom, 5)
+            
+            HStack {
+                Text(timeUtils.getTime(seconds: selectedTime))
+                Spacer()
             }
             
         }

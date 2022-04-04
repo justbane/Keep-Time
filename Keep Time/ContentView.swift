@@ -23,7 +23,7 @@ struct ContentView: View {
                     Image(systemName: "clock.arrow.circlepath")
                     Text("History")
                 }
-                NavigationLink(destination: Text("Performance")) {
+                NavigationLink(destination: PerformanceView()) {
                     Image(systemName: "gauge")
                     Text("Performance")
                 }

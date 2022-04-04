@@ -18,8 +18,9 @@ struct TimeHistoryListView: View {
         VStack {
 //            MARK: Time entry and utilization views
             TimeEntryView(timeUtils: timeUtils, dataUtils: dataUtils, day: day.today)
-            UtilizationView(dataUtils: dataUtils)
-                .padding()
+            
+            // Progress view for utilization and total
+            UtilizationTotalView(dataUtils: dataUtils)
             
             List {
                 ForEach(dataUtils.logsInReport ?? [], id: \.self) { log in

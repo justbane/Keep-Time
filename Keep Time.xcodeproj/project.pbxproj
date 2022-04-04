@@ -23,10 +23,12 @@
 		393DFFAE2738BA5200BAB0D5 /* TimeHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DFFAD2738BA5200BAB0D5 /* TimeHistoryView.swift */; };
 		393DFFB02738E14F00BAB0D5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DFFAF2738E14F00BAB0D5 /* DataManager.swift */; };
 		3940495427DC5A3000FFC45D /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3940495327DC5A3000FFC45D /* TextFieldModifier.swift */; };
+		3949FFF427FAA51500CB294C /* UtilizationTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3949FFF327FAA51500CB294C /* UtilizationTotalView.swift */; };
 		395ACCF92741D710003AE13C /* TimeHistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395ACCF82741D710003AE13C /* TimeHistoryListView.swift */; };
 		395E13BB274376C500C547CA /* Keep_Time.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 395E13BA274376C500C547CA /* Keep_Time.xcassets */; };
 		396C4D992733931400FB9F8A /* TimeEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396C4D982733931400FB9F8A /* TimeEntryView.swift */; };
 		396C4D9B2733987500FB9F8A /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396C4D9A2733987500FB9F8A /* TimeHelper.swift */; };
+		3981903A27F54F620056EF04 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981903927F54F620056EF04 /* PerformanceView.swift */; };
 		39B4AD2427B093370019B5C9 /* UtilizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B4AD2327B093370019B5C9 /* UtilizationView.swift */; };
 		39B7E0392737433500919754 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7E0382737433500919754 /* Date.swift */; };
 		39BB4F8927839D75000953C0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB4F8827839D75000953C0 /* Enums.swift */; };
@@ -70,10 +72,12 @@
 		393DFFAD2738BA5200BAB0D5 /* TimeHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHistoryView.swift; sourceTree = "<group>"; };
 		393DFFAF2738E14F00BAB0D5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3940495327DC5A3000FFC45D /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
+		3949FFF327FAA51500CB294C /* UtilizationTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilizationTotalView.swift; sourceTree = "<group>"; };
 		395ACCF82741D710003AE13C /* TimeHistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHistoryListView.swift; sourceTree = "<group>"; };
 		395E13BA274376C500C547CA /* Keep_Time.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Keep_Time.xcassets; sourceTree = "<group>"; };
 		396C4D982733931400FB9F8A /* TimeEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryView.swift; sourceTree = "<group>"; };
 		396C4D9A2733987500FB9F8A /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
+		3981903927F54F620056EF04 /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		39B4AD2327B093370019B5C9 /* UtilizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilizationView.swift; sourceTree = "<group>"; };
 		39B7E0382737433500919754 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		39BB4F8827839D75000953C0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 				39B4AD2327B093370019B5C9 /* UtilizationView.swift */,
 				396C4D982733931400FB9F8A /* TimeEntryView.swift */,
 				390F690B275BEC4400C41C71 /* HistorySortView.swift */,
+				3949FFF327FAA51500CB294C /* UtilizationTotalView.swift */,
 			);
 			path = Partial;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 				391D64E42724FDC900FAE548 /* TimeTodayView.swift */,
 				393DFFAD2738BA5200BAB0D5 /* TimeHistoryView.swift */,
 				395ACCF82741D710003AE13C /* TimeHistoryListView.swift */,
+				3981903927F54F620056EF04 /* PerformanceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 				39B4AD2427B093370019B5C9 /* UtilizationView.swift in Sources */,
 				395ACCF92741D710003AE13C /* TimeHistoryListView.swift in Sources */,
 				391D64E82725DE1100FAE548 /* FormatterExtension.swift in Sources */,
+				3981903A27F54F620056EF04 /* PerformanceView.swift in Sources */,
 				3940495427DC5A3000FFC45D /* TextFieldModifier.swift in Sources */,
 				391D64BD2724F7A000FAE548 /* Persistence.swift in Sources */,
 				396C4D992733931400FB9F8A /* TimeEntryView.swift in Sources */,
@@ -381,6 +388,7 @@
 				393DFFAE2738BA5200BAB0D5 /* TimeHistoryView.swift in Sources */,
 				391D64C02724F7A000FAE548 /* Keep_Time.xcdatamodeld in Sources */,
 				396C4D9B2733987500FB9F8A /* TimeHelper.swift in Sources */,
+				3949FFF427FAA51500CB294C /* UtilizationTotalView.swift in Sources */,
 				393DFFB02738E14F00BAB0D5 /* DataManager.swift in Sources */,
 				391D64E52724FDC900FAE548 /* TimeTodayView.swift in Sources */,
 				390F690C275BEC4400C41C71 /* HistorySortView.swift in Sources */,
@@ -553,6 +561,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -582,6 +591,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
