@@ -21,6 +21,7 @@ struct TimeTodayView: View {
     @StateObject var dataUtils = DataManager()
     
     @State var utilization = 0
+    @State var selectedlog: Log?
     
     var body: some View {
         VStack {
@@ -42,14 +43,22 @@ struct TimeTodayView: View {
         } else {
             
             VStack {
-                // Progress view for utilization and total
+//                Progress view for utilization and total
                 UtilizationTotalView(dataUtils: dataUtils)
-            
                 List {
-                    ForEach(logs) { log in
+                    ForEach(logs, id: \.self) { log in
                         HStack {
-                            VStack(alignment: .leading, spacing: 5) {
+                            VStack(alignment: .leading) {
                                 Text("\(timeUtils.getTime(seconds: Int(log.seconds)))").font(.title)
+                                if #available(macOS 12.0, *) {
+                                    Text(log.note ?? "").textSelection(.enabled)
+                                } else {
+                                    // Fallback on earlier versions
+                                    Text(log.note ?? "")
+                                }
+                            }
+                            Spacer()
+                            VStack {
                                 HStack {
                                     if log.billable {
                                         Text(Image(systemName: "dollarsign.circle"))
@@ -60,12 +69,13 @@ struct TimeTodayView: View {
                                             .foregroundColor(.gray)
                                             .font(.title)
                                     }
-                                    Text(formatter.formatTimeString(date: log.timestamp ?? Date().now))
-                                    Spacer()
-                                    Text(log.note ?? "")
-                                        .font(.subheadline).textCase(.uppercase)
-                                }.padding(.bottom)
+                                    EditButtonView(timeUtils: timeUtils, dataUtils: dataUtils, log: log)
+                                }
+                                Spacer()
+                                Text(formatter.formatTimeString(date: log.timestamp ?? Date().now))
+                                    .font(.subheadline).textCase(.uppercase)
                             }
+                            
                         }
                         .padding(5)
                         .cornerRadius(10)

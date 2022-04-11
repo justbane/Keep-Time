@@ -1,17 +1,18 @@
 //
-//  TimeEntry.swift
+//  TimeEditView.swift
 //  Keep Time
 //
-//  Created by Justin Bane on 11/3/21.
+//  Created by Justin Bane on 4/10/22.
 //
 
 import SwiftUI
 
-struct TimeEntryView: View {
+struct TimeEditView: View {
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var timeUtils: TimeHelper
     @ObservedObject var dataUtils: DataManager
-    @State var isShowing: Bool = false
+    
     @State var selectedTime: Int = 0
     @State var note: String = ""
     @State var selectedType: Int = 1
@@ -20,7 +21,7 @@ struct TimeEntryView: View {
     @State var startDate: Date = Date()
     @State var endDate: Date = Date()
     
-    let day: Date
+    let log: Log
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -58,6 +59,7 @@ struct TimeEntryView: View {
                 }.buttonStyle(.borderless)
                 
                 Spacer()
+                
                 TextField("Note: ", text: $note)
                 
                 Spacer()
@@ -75,19 +77,19 @@ struct TimeEntryView: View {
                     Image(systemName: "dollarsign.circle").tag(1)
                     Image(systemName: "brain.head.profile").tag(2)
                 }
-                    .pickerStyle(.segmented)
-                    .frame(width: 100)
-                    .help("Billable or Overhead")
+                .pickerStyle(.segmented)
+                .frame(width: 100)
+                .help("Billable or Overhead")
                 
                 Button {
-                    addTime()
+                    editEntry(log: log)
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
-                    Text("Add Time").font(.body)
+                    Text("Save").font(.body)
                 }
-            }.onAppear(perform: {
-                dataUtils.setTheDay(day: day)
-            }).font(.title3)
-                .padding(.bottom, 5)
+            }
+            .font(.title3)
+            .padding(.bottom, 5)
             
             HStack {
 //                Add preference pane for time entry
@@ -97,41 +99,37 @@ struct TimeEntryView: View {
             }
             
         }
+        .frame(width: 400, height: 100)
         .font(.title2)
         .padding()
-        
+        .onAppear(){
+            selectedTime = Int(log.seconds)
+            note = log.note ?? ""
+            selectedType = log.billable ? 1 : 2
+        }
+
     }
     
-    private func addTime() {
-//        Add preference pane for time entry
-//        selectedTime = Int(startDate.distance(to: endDate))
-        if (note != "" && selectedTime > 0) {
-            withAnimation {
-                let newItem = Log(context: viewContext)
-                newItem.seconds = Int32(selectedTime)
-                newItem.note = note
-                newItem.billable = (selectedType == TimeTypes.Billable.rawValue) ? true : false
-                newItem.timestamp = day
-                
-                do {
-                    try viewContext.save()
-                    dataUtils.getTodaysTotal()
-                    dataUtils.getLogsForDate(day: day)
-                } catch {
-//                    Replace this implementation with code to handle the error appropriately.
-//                    fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    let nsError = error as NSError
-                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                }
-            }
+    private func editEntry(log: Log) {
+        log.seconds = Int32(selectedTime)
+        log.note = note
+        log.billable = (selectedType == TimeTypes.Billable.rawValue) ? true : false
+        do {
+            try viewContext.save()
+            dataUtils.getTodaysTotal()
+            dataUtils.getLogsForDate(day: log.timestamp ?? Date())
+        } catch {
+//                Replace this implementation with code to handle the error appropriately.
+//                fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
+    
 }
 
-struct TimeEntry_Previews: PreviewProvider {
+struct TimeEditView_Previews: PreviewProvider {
     static var previews: some View {
-        let timeUtils = TimeHelper()
-        let dataUtils = DataManager()
-        TimeEntryView(timeUtils: timeUtils, dataUtils: dataUtils, day: Date())
+        TimeEditView(timeUtils: TimeHelper(), dataUtils: DataManager(), log: Log())
     }
 }

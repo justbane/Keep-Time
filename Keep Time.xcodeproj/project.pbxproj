@@ -29,6 +29,8 @@
 		396C4D992733931400FB9F8A /* TimeEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396C4D982733931400FB9F8A /* TimeEntryView.swift */; };
 		396C4D9B2733987500FB9F8A /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396C4D9A2733987500FB9F8A /* TimeHelper.swift */; };
 		3981903A27F54F620056EF04 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981903927F54F620056EF04 /* PerformanceView.swift */; };
+		39A0DB042803CB040099F288 /* TimeEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0DB032803CB040099F288 /* TimeEditView.swift */; };
+		39A0DB062803D8290099F288 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0DB052803D8290099F288 /* EditButtonView.swift */; };
 		39B4AD2427B093370019B5C9 /* UtilizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B4AD2327B093370019B5C9 /* UtilizationView.swift */; };
 		39B7E0392737433500919754 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7E0382737433500919754 /* Date.swift */; };
 		39BB4F8927839D75000953C0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB4F8827839D75000953C0 /* Enums.swift */; };
@@ -78,6 +80,8 @@
 		396C4D982733931400FB9F8A /* TimeEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryView.swift; sourceTree = "<group>"; };
 		396C4D9A2733987500FB9F8A /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
 		3981903927F54F620056EF04 /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
+		39A0DB032803CB040099F288 /* TimeEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEditView.swift; sourceTree = "<group>"; };
+		39A0DB052803D8290099F288 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
 		39B4AD2327B093370019B5C9 /* UtilizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilizationView.swift; sourceTree = "<group>"; };
 		39B7E0382737433500919754 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		39BB4F8827839D75000953C0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 				396C4D982733931400FB9F8A /* TimeEntryView.swift */,
 				390F690B275BEC4400C41C71 /* HistorySortView.swift */,
 				3949FFF327FAA51500CB294C /* UtilizationTotalView.swift */,
+				39A0DB032803CB040099F288 /* TimeEditView.swift */,
+				39A0DB052803D8290099F288 /* EditButtonView.swift */,
 			);
 			path = Partial;
 			sourceTree = "<group>";
@@ -381,9 +387,11 @@
 				391D64E82725DE1100FAE548 /* FormatterExtension.swift in Sources */,
 				3981903A27F54F620056EF04 /* PerformanceView.swift in Sources */,
 				3940495427DC5A3000FFC45D /* TextFieldModifier.swift in Sources */,
+				39A0DB042803CB040099F288 /* TimeEditView.swift in Sources */,
 				391D64BD2724F7A000FAE548 /* Persistence.swift in Sources */,
 				396C4D992733931400FB9F8A /* TimeEntryView.swift in Sources */,
 				39BB4F8927839D75000953C0 /* Enums.swift in Sources */,
+				39A0DB062803D8290099F288 /* EditButtonView.swift in Sources */,
 				392444ED27DD8CE30073ED06 /* BarGraph.swift in Sources */,
 				393DFFAE2738BA5200BAB0D5 /* TimeHistoryView.swift in Sources */,
 				391D64C02724F7A000FAE548 /* Keep_Time.xcdatamodeld in Sources */,

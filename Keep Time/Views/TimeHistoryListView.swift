@@ -19,7 +19,7 @@ struct TimeHistoryListView: View {
 //            MARK: Time entry and utilization views
             TimeEntryView(timeUtils: timeUtils, dataUtils: dataUtils, day: day.today)
             
-            // Progress view for utilization and total
+//            Progress view for utilization and total
             UtilizationTotalView(dataUtils: dataUtils)
             
             List {
@@ -37,8 +37,15 @@ struct TimeHistoryListView: View {
                             .frame(width: 200, alignment: .leading)
                         Text("\(formatter.formatDateString(date: log.timestamp ?? Date())) \(formatter.formatTimeString(date: log.timestamp ?? Date()))")
                         Spacer()
-                        Text(log.note ?? "")
-                            .font(.subheadline).textCase(.uppercase)
+                        if #available(macOS 12.0, *) {
+                            Text(log.note ?? "")
+                                .font(.subheadline).textCase(.uppercase)
+                                .textSelection(.enabled)
+                        } else {
+                            // Fallback on earlier versions
+                            Text(log.note ?? "")
+                                .font(.subheadline).textCase(.uppercase)
+                        }
                     }
                     .padding(.horizontal)
                 }.onDelete(perform: deleteItem)
