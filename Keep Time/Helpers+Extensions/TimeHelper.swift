@@ -30,6 +30,7 @@ class TimeHelper: ObservableObject {
         if timeValues.minutes > 0 {
             timeString = timeString + "\(timeValues.minutes) minutes"
         }
+
         return timeString
     }
 }

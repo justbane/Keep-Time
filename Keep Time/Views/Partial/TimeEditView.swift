@@ -58,10 +58,9 @@ struct TimeEditView: View {
                         .frame(width: 20, height: 20)
                 }.buttonStyle(.borderless)
                 
-                Spacer()
-                
-                TextField("Note: ", text: $note)
-                
+//                Add preference pane for time entry
+//                Text(timeUtils.getTime(seconds: Int(startDate.distance(to: endDate))))
+                Text(timeUtils.getTime(seconds: selectedTime))
                 Spacer()
                 
 //                TODO: implement tags functionality
@@ -91,15 +90,12 @@ struct TimeEditView: View {
             .font(.title3)
             .padding(.bottom, 5)
             
-            HStack {
-//                Add preference pane for time entry
-//                Text(timeUtils.getTime(seconds: Int(startDate.distance(to: endDate))))
-                Text(timeUtils.getTime(seconds: selectedTime))
-                Spacer()
-            }
+            TextEditor(text: $note)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+                .font(.body)
             
         }
-        .frame(width: 400, height: 100)
+        .frame(width: 500, height: 100)
         .font(.title2)
         .padding()
         .onAppear(){

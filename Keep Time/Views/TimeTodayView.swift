@@ -59,7 +59,7 @@ struct TimeTodayView: View {
                             }
                             Spacer()
                             VStack {
-                                HStack {
+                                HStack(alignment: .top) {
                                     if log.billable {
                                         Text(Image(systemName: "dollarsign.circle"))
                                             .foregroundColor(.green)
@@ -70,8 +70,7 @@ struct TimeTodayView: View {
                                             .font(.title)
                                     }
                                     EditButtonView(timeUtils: timeUtils, dataUtils: dataUtils, log: log)
-                                }
-                                Spacer()
+                                }.padding(.bottom, 3)
                                 Text(formatter.formatTimeString(date: log.timestamp ?? Date().now))
                                     .font(.subheadline).textCase(.uppercase)
                             }

@@ -57,8 +57,14 @@ struct TimeEntryView: View {
                         .frame(width: 20, height: 20)
                 }.buttonStyle(.borderless)
                 
-                Spacer()
-                TextField("Note: ", text: $note)
+                HStack {
+                    Text("Note: ")
+                    TextEditor(text: $note)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .font(.title2)
+                }
+                .frame(width: 400, height: 22)
+                .padding(.leading, 10)
                 
                 Spacer()
                 
@@ -89,14 +95,13 @@ struct TimeEntryView: View {
             }).font(.title3)
                 .padding(.bottom, 5)
             
-            HStack {
-//                Add preference pane for time entry
-//                Text(timeUtils.getTime(seconds: Int(startDate.distance(to: endDate))))
-                Text(timeUtils.getTime(seconds: selectedTime))
-                Spacer()
-            }
+            Spacer()
+//            Add preference pane for time entry
+//            Text(timeUtils.getTime(seconds: Int(startDate.distance(to: endDate))))
+            Text(timeUtils.getTime(seconds: selectedTime))
             
         }
+        .frame(height: 65)
         .font(.title2)
         .padding()
         
@@ -123,6 +128,10 @@ struct TimeEntryView: View {
                     let nsError = error as NSError
                     fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
                 }
+                
+                note = ""
+                selectedTime = 0
+                selectedType = 1
             }
         }
     }

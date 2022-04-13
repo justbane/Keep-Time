@@ -41,10 +41,12 @@ struct TimeHistoryListView: View {
                             Text(log.note ?? "")
                                 .font(.subheadline).textCase(.uppercase)
                                 .textSelection(.enabled)
+                                .lineLimit(3)
                         } else {
                             // Fallback on earlier versions
                             Text(log.note ?? "")
                                 .font(.subheadline).textCase(.uppercase)
+                                .lineLimit(3)
                         }
                     }
                     .padding(.horizontal)

@@ -22,7 +22,6 @@
 		392444ED27DD8CE30073ED06 /* BarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392444EC27DD8CE30073ED06 /* BarGraph.swift */; };
 		393DFFAE2738BA5200BAB0D5 /* TimeHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DFFAD2738BA5200BAB0D5 /* TimeHistoryView.swift */; };
 		393DFFB02738E14F00BAB0D5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DFFAF2738E14F00BAB0D5 /* DataManager.swift */; };
-		3940495427DC5A3000FFC45D /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3940495327DC5A3000FFC45D /* TextFieldModifier.swift */; };
 		3949FFF427FAA51500CB294C /* UtilizationTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3949FFF327FAA51500CB294C /* UtilizationTotalView.swift */; };
 		395ACCF92741D710003AE13C /* TimeHistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395ACCF82741D710003AE13C /* TimeHistoryListView.swift */; };
 		395E13BB274376C500C547CA /* Keep_Time.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 395E13BA274376C500C547CA /* Keep_Time.xcassets */; };
@@ -73,7 +72,6 @@
 		392444EC27DD8CE30073ED06 /* BarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraph.swift; sourceTree = "<group>"; };
 		393DFFAD2738BA5200BAB0D5 /* TimeHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHistoryView.swift; sourceTree = "<group>"; };
 		393DFFAF2738E14F00BAB0D5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		3940495327DC5A3000FFC45D /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
 		3949FFF327FAA51500CB294C /* UtilizationTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilizationTotalView.swift; sourceTree = "<group>"; };
 		395ACCF82741D710003AE13C /* TimeHistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHistoryListView.swift; sourceTree = "<group>"; };
 		395E13BA274376C500C547CA /* Keep_Time.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Keep_Time.xcassets; sourceTree = "<group>"; };
@@ -217,7 +215,6 @@
 				391D64E72725DE1100FAE548 /* FormatterExtension.swift */,
 				396C4D9A2733987500FB9F8A /* TimeHelper.swift */,
 				39BB4F8827839D75000953C0 /* Enums.swift */,
-				3940495327DC5A3000FFC45D /* TextFieldModifier.swift */,
 			);
 			path = "Helpers+Extensions";
 			sourceTree = "<group>";
@@ -386,7 +383,6 @@
 				395ACCF92741D710003AE13C /* TimeHistoryListView.swift in Sources */,
 				391D64E82725DE1100FAE548 /* FormatterExtension.swift in Sources */,
 				3981903A27F54F620056EF04 /* PerformanceView.swift in Sources */,
-				3940495427DC5A3000FFC45D /* TextFieldModifier.swift in Sources */,
 				39A0DB042803CB040099F288 /* TimeEditView.swift in Sources */,
 				391D64BD2724F7A000FAE548 /* Persistence.swift in Sources */,
 				396C4D992733931400FB9F8A /* TimeEntryView.swift in Sources */,

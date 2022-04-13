@@ -18,7 +18,7 @@ struct EditButtonView: View {
         Button {
             showingSheet = true
         } label: {
-            Text(Image(systemName: "square.and.pencil"))
+            Text(Image(systemName: "square.and.pencil")).font(.title)
         }.sheet(isPresented: $showingSheet) {
             TimeEditView(timeUtils: timeUtils, dataUtils: dataUtils, log: log)
         }
