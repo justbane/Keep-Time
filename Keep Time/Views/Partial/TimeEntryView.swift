@@ -56,15 +56,16 @@ struct TimeEntryView: View {
                         .resizable()
                         .frame(width: 20, height: 20)
                 }.buttonStyle(.borderless)
+                GeometryReader { metrics in
+                    HStack {
+                        Text("Note: ")
+                        TextEditor(text: $note)
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                            .font(.body)
+                    }
+                    .frame(width: metrics.size.width,height: 38)
+                }.padding(.leading, 10)
                 
-                HStack {
-                    Text("Note: ")
-                    TextEditor(text: $note)
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                        .font(.title2)
-                }
-                .frame(width: 400, height: 22)
-                .padding(.leading, 10)
                 
                 Spacer()
                 

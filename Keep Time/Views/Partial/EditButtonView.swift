@@ -23,7 +23,6 @@ struct EditButtonView: View {
             TimeEditView(timeUtils: timeUtils, dataUtils: dataUtils, log: log)
         }
         .buttonStyle(.plain)
-
     }
 }
 
