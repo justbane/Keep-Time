@@ -13,12 +13,13 @@ struct EditButtonView: View {
     
     @State var showingSheet: Bool = false
     let log: Log
+    let fontSize: Font
     
     var body: some View {
         Button {
             showingSheet = true
         } label: {
-            Text(Image(systemName: "square.and.pencil")).font(.title)
+            Text(Image(systemName: "square.and.pencil")).font(fontSize)
         }.sheet(isPresented: $showingSheet) {
             TimeEditView(timeUtils: timeUtils, dataUtils: dataUtils, log: log)
         }
@@ -30,6 +31,6 @@ struct EditButtonView_Previews: PreviewProvider {
     static var previews: some View {
         let timeUtils = TimeHelper()
         let dataUtils = DataManager()
-        EditButtonView(timeUtils: timeUtils, dataUtils: dataUtils, log: Log())
+        EditButtonView(timeUtils: timeUtils, dataUtils: dataUtils, log: Log(), fontSize: .title2)
     }
 }

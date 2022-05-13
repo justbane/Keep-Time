@@ -69,7 +69,7 @@ struct TimeTodayView: View {
                                             .foregroundColor(.gray)
                                             .font(.title)
                                     }
-                                    EditButtonView(timeUtils: timeUtils, dataUtils: dataUtils, log: log)
+                                    EditButtonView(timeUtils: timeUtils, dataUtils: dataUtils, log: log, fontSize: .title)
                                 }.padding(.bottom, 3)
                                 Text(formatter.formatTimeString(date: log.timestamp ?? Date().now))
                                     .font(.subheadline).textCase(.uppercase)

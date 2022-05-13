@@ -25,31 +25,43 @@ struct TimeHistoryListView: View {
             List {
                 ForEach(dataUtils.logsInReport ?? [], id: \.self) { log in
                     HStack {
-                        if log.billable {
-                            Text(Image(systemName: "dollarsign.circle"))
-                                .foregroundColor(.green)
-                        } else {
-                            Text(Image(systemName: "brain.head.profile"))
-                                .foregroundColor(.gray)
+                        
+                        VStack(alignment: .leading) {
+                            Text("\(timeUtils.getTime(seconds: Int(log.seconds)))")
+                                .font(.title3)
+                                .frame(width: 200, alignment: .leading)
+                            
+                            if #available(macOS 12.0, *) {
+                                Text(log.note ?? "")
+                                    .font(.subheadline)
+                                    .textSelection(.enabled)
+                                    .lineLimit(3)
+                            } else {
+                                // Fallback on earlier versions
+                                Text(log.note ?? "")
+                                    .font(.subheadline).textCase(.uppercase)
+                                    .lineLimit(3)
+                            }
                         }
-                        Text("\(timeUtils.getTime(seconds: Int(log.seconds)))")
-                            .font(.title3)
-                            .frame(width: 200, alignment: .leading)
-                        Text("\(formatter.formatDateString(date: log.timestamp ?? Date())) \(formatter.formatTimeString(date: log.timestamp ?? Date()))")
                         Spacer()
-                        if #available(macOS 12.0, *) {
-                            Text(log.note ?? "")
-                                .font(.subheadline).textCase(.uppercase)
-                                .textSelection(.enabled)
-                                .lineLimit(3)
-                        } else {
-                            // Fallback on earlier versions
-                            Text(log.note ?? "")
-                                .font(.subheadline).textCase(.uppercase)
-                                .lineLimit(3)
+                        VStack(alignment: .trailing) {
+                            HStack {
+                                if log.billable {
+                                    Text(Image(systemName: "dollarsign.circle"))
+                                        .foregroundColor(.green)
+                                } else {
+                                    Text(Image(systemName: "brain.head.profile"))
+                                        .foregroundColor(.gray)
+                                }
+                                EditButtonView(timeUtils: timeUtils, dataUtils: dataUtils, log: log, fontSize: .body)
+                            }
+                            Spacer()
+                            Text("\(formatter.formatDateString(date: log.timestamp ?? Date())) \(formatter.formatTimeString(date: log.timestamp ?? Date()))")
                         }
+                        
                     }
                     .padding(.horizontal)
+                    .padding(.vertical, 5)
                 }.onDelete(perform: deleteItem)
             }
         }

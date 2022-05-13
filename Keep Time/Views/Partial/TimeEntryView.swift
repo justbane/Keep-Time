@@ -23,9 +23,9 @@ struct TimeEntryView: View {
     let day: Date
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             
-            HStack {
+            HStack(alignment: .center) {
                 
 //                TODO: Add preference pane for time entry
 //                DatePicker("From", selection: $startDate,
@@ -94,15 +94,16 @@ struct TimeEntryView: View {
             }.onAppear(perform: {
                 dataUtils.setTheDay(day: day)
             }).font(.title3)
-                .padding(.bottom, 5)
+                .frame(height: 35)
             
-            Spacer()
 //            Add preference pane for time entry
 //            Text(timeUtils.getTime(seconds: Int(startDate.distance(to: endDate))))
-            Text(timeUtils.getTime(seconds: selectedTime))
-            
+            HStack(alignment: .bottom) {
+                Text(timeUtils.getTime(seconds: selectedTime))
+            }
+            .frame(height: 20)
         }
-        .frame(height: 65)
+        .frame(height: 75)
         .font(.title2)
         .padding()
         
